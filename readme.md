@@ -1,70 +1,23 @@
-# Playwright Automation Project
+# Mercado Libre Playwright Automation
 
-This project demonstrates automated end-to-end testing of a login flow using Playwright.
+Automation practice project using Playwright and TypeScript, focused on public Mercado Libre user flows.
 
-## 🚀 Tech Stack
+## Covered scenarios
 
-* Playwright
-* TypeScript
-* Node.js
+- Product search
+- Search results validation
+- Product page validation
+- Filter application and results update
 
-## 🧪 Test Scenarios
+## Tech stack
 
-The following test cases are covered:
+- Playwright
+- TypeScript
+- Node.js
 
-* ✅ Successful login (standard user)
-* ❌ Invalid username
-* ❌ Invalid password
-* 🔒 Locked out user
-
-## 📂 Project Structure
-
-```
-playwright-automation-tests/
-├── tests/
-│   ├── login.spec.ts
-│   ├── login-invalid-user.spec.ts
-│   ├── login-invalid-password.spec.ts
-│   ├── login-locked-user.spec.ts
-├── playwright.config.ts
-├── package.json
-└── README.md
-```
-
-## ▶️ How to Run Tests
-
-Install dependencies:
+## Run locally
 
 ```bash
 npm install
-```
-
-Run tests:
-
-```bash
-npx playwright test
-```
-
-Run in headed mode:
-
-```bash
+npx playwright install
 npx playwright test --headed
-```
-
-Open HTML report:
-
-```bash
-npx playwright show-report
-```
-
-## 📊 What This Project Demonstrates
-
-* UI automation using Playwright
-* Positive and negative test scenarios
-* Basic test structure for maintainable automation
-* Real user interaction simulation (form input, clicks, validation)
-
-## 💼 Author
-
-Esteban Nicolucci
-
