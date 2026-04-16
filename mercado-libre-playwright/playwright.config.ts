@@ -4,17 +4,16 @@ export default defineConfig({
   testDir: './tests',
   timeout: 30000,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : 2,  // 1 worker en CI evita detección por velocidad
+  workers: process.env.CI ? 1 : 2,
+  reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
     headless: true,
     locale: 'es-AR',
     timezoneId: 'America/Argentina/Buenos_Aires',
-    userAgent:
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
     extraHTTPHeaders: {
       'Accept-Language': 'es-AR,es;q=0.9',
     },
-    slowMo: process.env.CI ? 800 : 0,
     viewport: { width: 1280, height: 720 },
   },
   projects: [
