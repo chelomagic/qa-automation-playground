@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test('apply a filter and keep seeing results', async ({ page }) => {
+  test.skip(!!process.env.CI, 'Mercado Libre blocks GitHub Actions datacenter IPs.');
+
   await page.goto('https://listado.mercadolibre.com.ar/heladera-no-frost');
   await page.waitForLoadState('domcontentloaded');
 
@@ -17,7 +19,6 @@ test('apply a filter and keep seeing results', async ({ page }) => {
   await filterOption.click();
 
   await page.waitForLoadState('domcontentloaded');
-
   await expect(page).not.toHaveURL(currentUrl);
 
   const resultItemsAfter = page.locator('ol.ui-search-layout > li');

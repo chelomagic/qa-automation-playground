@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - 'mercado-libre-playwright/**'
+      - '.github/workflows/playwright.yml'
   pull_request:
     paths:
       - 'mercado-libre-playwright/**'
+      - '.github/workflows/playwright.yml'
 
 jobs:
   test:
@@ -31,5 +33,16 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Playwright debug test
+        run: npx playwright test tests/debug-ci.spec.ts
+
+      - name: Upload debug artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-artifacts
+          path: |
+            mercado-libre-playwright/debug-page.png
+            mercado-libre-playwright/debug-page.html
+            mercado-libre-playwright/test-results/
+          retention-days: 7
