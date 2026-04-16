@@ -1,22 +1,18 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
+import { HomePage } from '../pages/HomePage';
+import { ResultsPage } from '../pages/ResultsPage';
+import { ProductPage } from '../pages/ProductPage';
 
-test('open product and validate info', async ({ page }) => {
-  await page.goto('https://www.mercadolibre.com.ar');
+test('open product with POM', async ({ page }) => {
+  const home = new HomePage(page);
+  const results = new ResultsPage(page);
+  const product = new ProductPage(page);
 
-  const searchInput = page.locator('input[name="as_word"]');
-  await searchInput.fill('heladera no frost');
-  await searchInput.press('Enter');
+  await home.goto();
+  await home.search('heladera no frost');
 
-  await page.waitForLoadState('domcontentloaded');
+  await results.validateResultsVisible();
+  await results.openFirstProduct();
 
-  const firstProduct = page.locator('a[href*="/p/"], a[href*="MLA-"]').first();
-  await firstProduct.click();
-
-  await page.waitForLoadState('domcontentloaded');
-
-  const title = page.locator('h1');
-  await expect(title).toBeVisible();
-
-  const price = page.locator('.andes-money-amount').first();
-  await expect(price).toBeVisible();
+  await product.validateProductLoaded();
 });
