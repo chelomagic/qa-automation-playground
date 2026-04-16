@@ -4,11 +4,9 @@ on:
   push:
     paths:
       - 'mercado-libre-playwright/**'
-      - '.github/workflows/playwright.yml'
   pull_request:
     paths:
       - 'mercado-libre-playwright/**'
-      - '.github/workflows/playwright.yml'
 
 jobs:
   test:
@@ -25,7 +23,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '22'
 
       - name: Install dependencies
         run: npm install
@@ -33,16 +31,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      - name: Run Playwright debug test
-        run: npx playwright test tests/debug-ci.spec.ts
+      - name: Run Playwright tests
+        run: npx playwright test
 
-      - name: Upload debug artifacts
-        if: always()
+      # ---- NUEVO: guardar y publicar el reporte ----
+      - name: Upload Playwright report
         uses: actions/upload-artifact@v4
+        if: always()                        # se sube aunque fallen tests
         with:
-          name: debug-artifacts
-          path: |
-            mercado-libre-playwright/debug-page.png
-            mercado-libre-playwright/debug-page.html
-            mercado-libre-playwright/test-results/
-          retention-days: 7
+          name: playwright-report
+          path: mercado-libre-playwright/playwright-report/
+          retention-days: 30
