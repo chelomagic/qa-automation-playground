@@ -20,7 +20,7 @@ This is a QA automation practice project using Playwright + TypeScript, focused 
 * Playwright
 * TypeScript
 * Node.js
-* GitHub Actions
+* GitHub Actions.
 
 ---
 
