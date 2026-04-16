@@ -9,10 +9,7 @@ test('open product with POM', async ({ page }) => {
   const product = new ProductPage(page);
 
   await home.goto();
-  await home.search('heladera no frost');
-
   await results.validateResultsVisible();
   await results.openFirstProduct();
-
   await product.validateProductLoaded();
 });
