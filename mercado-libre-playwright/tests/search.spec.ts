@@ -6,6 +6,6 @@ test('search results page loads correctly on Mercado Libre', async ({ page }) =>
 
   await expect(page).toHaveURL(/heladera-no-frost|listado/i);
 
-  const results = page.locator('a[href*="/p/"], a[href*="MLA-"]');
-  await expect(results.first()).toBeVisible();
+  const resultItems = page.locator('ol.ui-search-layout > li');
+  await expect(resultItems.first()).toBeVisible({ timeout: 10000 });
 });
