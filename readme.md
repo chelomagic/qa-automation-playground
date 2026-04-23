@@ -1,50 +1,117 @@
-# 🧪 Mercado Libre Playwright Automation
+# 🧪 QA Automation Playground
 
-This is a QA automation practice project using Playwright + TypeScript, focused on testing real user flows on Mercado Libre.
-
----
-
-## 🚀 What this project covers
-
-* 🔍 Product search validation
-* 🧰 Filter behavior
-* 📦 Product page navigation
-* 🧱 Page Object Model (POM) structure
-* ⚙️ GitHub Actions CI setup
-* 🧠 Real-world debugging (CI vs local differences)
+A QA Automation portfolio built with **Playwright + TypeScript**, focused on real-world testing scenarios, clean end-to-end flows, and scalable automation design using the **Page Object Model (POM)**.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Tech Stack
 
 * Playwright
 * TypeScript
 * Node.js
-* GitHub Actions.
+* Page Object Model (POM)
+* GitHub Actions (CI)
+* Playwright HTML Reports
 
 ---
 
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```
-mercado-libre-playwright/
-├── pages/
-│   ├── HomePage.ts
-│   ├── ResultsPage.ts
-│   └── ProductPage.ts
-├── tests/
-│   ├── search.spec.ts
-│   ├── filter.spec.ts
-│   └── product.spec.ts
-├── playwright.config.ts (optional)
-├── package.json
+qa-automation-playground/
+├── mercado-libre-playwright/   # Real-world testing (CI challenges)
+├── saucedemo-playwright/       # Stable E2E automation
+└── .github/workflows/          # CI pipelines
 ```
 
 ---
 
-## ▶️ Run Locally
+## 🛒 Project 1 — MercadoLibre (Real-world testing)
+
+Automation of search, filters, and product navigation on a live e-commerce site.
+
+### 🔍 What this demonstrates
+
+* Testing against real external systems
+* Handling flaky behavior
+* Debugging CI vs local differences
+* Understanding test instability causes
+
+### ⚠️ Key Challenge
+
+GitHub Actions runs from datacenter IPs → MercadoLibre may:
+
+* block requests
+* show CAPTCHA
+* return different DOM
+
+### 🧠 Key Insight
+
+> Tests that depend on external systems may behave differently in CI than locally.
+
+### 🛠️ Strategy applied
+
+* Debugging CI responses
+* Identifying environment differences
+* Conditional execution (`process.env.CI`)
+
+### ✅ Strategy implemented
+* Mock-based testing with `page.route()` for CI compatibility
+* Tests run reliably in GitHub Actions without depending on external systems
+* Conditional execution (`process.env.CI`) for local vs CI environments
+
+---
+
+## 🧪 Project 2 — SauceDemo (Stable E2E flow)
+
+A clean and reliable automation project built to demonstrate best practices.
+
+### 🔄 Flow Covered
+
+Login → Add product → Cart → Checkout → Order success
+
+### ✅ What this validates
+
+* Functional login
+* Product interaction
+* Cart state management
+* Full checkout flow
+* Successful order confirmation
+
+### 🧱 Architecture
+
+* Page Object Model (POM)
+* Separation of test logic and UI selectors
+* Reusable page classes
+
+---
+
+## 🧠 Skills Demonstrated
+
+* ✔ Page Object Model (POM)
+* ✔ UI Assertions (`toBeVisible`, `toHaveText`, `toHaveURL`)
+* ✔ End-to-end testing
+* ✔ State validation (not just UI clicks)
+* ✔ CI debugging (local vs GitHub Actions)
+* ✔ Test reliability awareness
+
+---
+
+## ⚙️ How to Run
+
+### ▶️ MercadoLibre project
 
 ```bash
+cd mercado-libre-playwright
+npm install
+npx playwright install
+npx playwright test --headed
+```
+
+### ▶️ SauceDemo project
+
+```bash
+cd saucedemo-playwright
 npm install
 npx playwright install
 npx playwright test --headed
@@ -52,76 +119,28 @@ npx playwright test --headed
 
 ---
 
-## ⚠️ CI Behavior (Important)
-
-When running in **GitHub Actions**, Mercado Libre may return an error page instead of the actual content.
-
-This happens because:
-
-* GitHub Actions uses **datacenter IPs (Azure)**
-* Mercado Libre detects this traffic as automated/bot-like
-* The site responds with a **blocked/error page**
-
-Example of what appears in CI instead of real results:
-
-> "Hubo un error accediendo a esta pagina..."
-
-Because of this, selectors like:
-
-```
-ol.ui-search-layout > li
-```
-
-do not exist in CI, causing test failures.
+## 🔄 CI (GitHub Actions)
+* Automated test execution on every push
+* Mock-based tests run reliably without external dependencies
+* Playwright HTML reports uploaded as artifacts
+* All workflows currently passing ✅
 
 ---
 
-## ✅ Solution Applied
+## 👨‍💻 About Me
 
-To avoid **false negatives in CI**, tests that depend on the real Mercado Libre site are skipped when running in CI:
-
-```ts
-test.skip(!!process.env.CI, 'Mercado Libre blocks datacenter IPs in CI');
-```
-
-This ensures:
-
-* ✔ Reliable pipeline (no random failures)
-* ✔ Tests still run correctly in local environments
-* ✔ Real-world behavior is documented
+QA Analyst with 6+ years of experience in manual testing (Stride / Open English), practicing to become better at QA Automation**.
+* Tools: Playwright, Postman, Jira
+* Focus: Reliable, maintainable automation
+* Currently learning: API testing + CI pipelines
 
 ---
 
+## 💬 Final Note
 
+This repository showcases two key realities of QA Automation:
 
-## 🧠 What I learned
+* 🌍 **Real-world instability** (MercadoLibre)
+* 🧪 **Controlled reliable testing** (SauceDemo)
 
-- CI can behave very differently from local environments  
-- Some websites block datacenter IPs (like GitHub Actions)  
-- Not all E2E tests are suitable for CI without adjustments  
-- Debugging CI issues often requires inspecting the actual HTML returned  
-
----
-
-## 🔮 Possible Improvements
-
-* Mock network responses using `page.route()` to fully decouple tests from Mercado Libre
-* Use a self-hosted runner to bypass IP blocking
-* Add a secondary demo project (CI-safe) for full pipeline validation
-
----
-
-## 📌 Notes
-
-This project is intended as a **learning and portfolio exercise**, focusing on:
-
-* Real-world debugging
-* Automation structure
-* Handling unstable external dependencies
-
----
-
-## 💡 Author
-
-Esteban Nicolucci
-QA
+Understanding the difference between both is essential in real QA work.
