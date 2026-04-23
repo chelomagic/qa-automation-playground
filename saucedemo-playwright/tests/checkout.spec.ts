@@ -12,12 +12,19 @@ test('user can complete checkout flow', async ({ page }) => {
 
   await loginPage.goto();
   await loginPage.login('standard_user', 'secret_sauce');
+  await loginPage.expectLoginSuccess();
 
   await inventoryPage.expectInventoryVisible();
+
   await inventoryPage.addFirstItemToCart();
+  await inventoryPage.expectCartCount('1');
+
   await inventoryPage.openCart();
 
   await cartPage.expectCartItemVisible();
+  await cartPage.expectItemCount(1);
+  await cartPage.expectFirstItemNameVisible();
+
   await cartPage.goToCheckout();
 
   await checkoutPage.fillCheckoutInfo('Esteban', 'Test', '1234');
