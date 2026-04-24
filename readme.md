@@ -1,4 +1,4 @@
----
+
 
 ## 🛒 Project 1 — MercadoLibre (Real-world testing)
 Automation of search, filters, and product navigation on a live e-commerce site.
