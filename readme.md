@@ -1,6 +1,104 @@
+# QA Automation Playground
 
+End-to-end QA automation portfolio built with Playwright + TypeScript.
 
-## 🛒 Project 1 — MercadoLibre (Real-world testing)
+This repository showcases different testing approaches across UI and API layers, including real-world challenges like flaky behavior, CI limitations, and external system dependencies.
+
+---
+
+## 🚀 Projects
+
+### 🛒 MercadoLibre (Real-world testing)
+Automation of search, filters, and product navigation on a live e-commerce platform.
+
+**What this demonstrates:**
+- Testing against real external systems
+- Handling flaky behavior and dynamic content
+- Debugging CI vs local differences
+- Dealing with bot detection blocking automation
+- Using mock-based strategies for CI stability
+
+---
+
+### 🧪 SauceDemo (E2E UI Testing)
+Classic end-to-end automation project using a controlled demo environment.
+
+**What this demonstrates:**
+- Page Object Model (POM)
+- Positive and negative test scenarios
+- Clean and maintainable test structure
+- Reliable assertions and flows
+
+---
+
+### 🔌 API Testing (JSONPlaceholder)
+REST API testing using Playwright’s request capabilities.
+
+**What this demonstrates:**
+- GET, POST, PUT, DELETE requests
+- Response validation and assertions
+- Data integrity checks
+- API test structuring
+
+---
+
+## 🧰 Tech Stack
+
+- Playwright
+- TypeScript
+- GitHub Actions (CI/CD)
+
+---
+
+## ⚙️ Running the tests
+
+Clone the repository and install dependencies:
+
+npm install
+
+Run tests:
+
+npx playwright test
+
+Run in headed mode:
+
+npx playwright test --headed
+
+View HTML report:
+
+npx playwright show-report
+
+---
+
+## ⚙️ CI / Automation
+
+GitHub Actions are configured to run tests automatically on push and pull requests.
+
+Note:
+- MercadoLibre tests may fail in CI due to bot detection mechanisms.
+- Mock-based strategies are used to maintain test reliability when needed.
+
+---
+
+## 🧠 Key Takeaway
+
+Automation is not just about writing tests.
+
+It involves adapting to real-world constraints such as:
+- unstable environments
+- external dependencies
+- CI limitations
+- anti-bot protections
+
+This project reflects that learning process.
+
+---
+
+## 📌 Repository
+
+https://github.com/chelomagic/qa-automation-playground
+
+## 🛒 Project 1 - MercadoLibre (Real-world testing)
 Automation of search, filters, and product navigation on a live e-commerce site.
 
 ### 🔍 What this demonstrates
@@ -25,7 +123,7 @@ GitHub Actions runs from datacenter IPs → MercadoLibre may:
 
 ---
 
-## 🧪 Project 2 — SauceDemo (Stable E2E flow)
+## 🧪 Project 2 - SauceDemo (Stable E2E flow)
 A clean and reliable automation project built to demonstrate best practices.
 
 ### 🔄 Flow Covered
@@ -46,15 +144,15 @@ Login → Add product → Cart → Checkout → Order success
 
 ---
 
-## 🔌 Project 3 — API Testing (REST)
+## 🔌 Project 3 - API Testing (REST)
 Automated API tests against JSONPlaceholder using Playwright's request context — no browser needed.
 
 ### 🔍 What this covers
-* GET — fetch a single user and validate response data
-* GET — fetch a list and validate count
-* POST — create a resource and validate response
-* PUT — update an existing resource
-* DELETE — remove a resource
+* GET - fetch a single user and validate response data
+* GET - fetch a list and validate count
+* POST - create a resource and validate response
+* PUT - update an existing resource
+* DELETE - remove a resource
 
 ### ✅ What this demonstrates
 * Full CRUD coverage via HTTP methods
