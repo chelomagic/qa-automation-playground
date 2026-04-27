@@ -1,5 +1,7 @@
 # QA Automation Playground
 
+[![Playwright Tests](https://github.com/chelomagic/qa-automation-playground/actions/workflows/playwright.yml/badge.svg)](https://github.com/chelomagic/qa-automation-playground/actions/workflows/playwright.yml)
+
 End-to-end QA automation portfolio built with Playwright + TypeScript.
 
 This repository showcases different testing approaches across UI and API layers, including real-world challenges like flaky behavior, CI limitations, and external system dependencies.
